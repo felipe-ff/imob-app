@@ -7,20 +7,21 @@
 </ion-header>
 
 <ion-content style="background:#F1F1F1">
- <ion-card style="margin-top:10px">
-  <ion-card-header style="padding:0 18px">
-    <ion-card-title class="title">
-      <p>Casa - Santa Rita do Sapucaí</p>
-      <p>Teste - Rua Maria de Lourdes Sodré de Azevedo</p>
-    </ion-card-title>
-  </ion-card-header>
+  <ion-card *ngFor="let item of houseList;">
+    <ion-card-header style="padding:0 18px">
+      <ion-card-title class="title">
+        <p>Casa - Santa Rita do Sapucaí</p>
+        <p>Teste - Rua Maria de Lourdes Sodré de Azevedo</p>
+      </ion-card-title>
+    </ion-card-header>
 
-  <ion-card-content style="padding:0">    
-    <img [src]="base64Image()"/>
-  </ion-card-content>
+    <ion-card-content style="padding:0">    
+      <img [src]="item.imageUrl[0]"/>
+    </ion-card-content>
+  
+    <ion-card-content>
+      R$ 860/mês
+    </ion-card-content>
+  </ion-card>
 
-  <ion-card-content>
-    R$ 860/mês
-  </ion-card-content>
- </ion-card>
 </ion-content>
