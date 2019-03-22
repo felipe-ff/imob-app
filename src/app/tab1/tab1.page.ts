@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CdrService } from '../service/cdr.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -8,12 +9,10 @@ import { CdrService } from '../service/cdr.service';
 })
 export class Tab1Page {
 
-  houseList;
+  houseList: any[];
 
-  constructor(private cdrService: CdrService) {
-    console.log('ok1');
-    this.cdrService.getBooks(undefined).subscribe( data => {
-      console.log('ok2');
+  constructor(private cdrService: CdrService, private http: HttpClient) {
+    this.cdrService.getBooks(null).subscribe( data => {
       this.houseList = data.items;
       console.log(data);
      // this.loading = false;
