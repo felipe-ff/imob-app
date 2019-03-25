@@ -1,53 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two
+    <ion-title style="text-align:center">
+      Venda
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-item>
-        <ion-label>
-          Icon End
-        </ion-label>
-        <ion-icon name="information-circle" slot="end"></ion-icon>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label>
-          Large Icon End
-        </ion-label>
-        <ion-icon name="information-circle" size="large" slot="end"></ion-icon>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label>
-          Small Icon End
-        </ion-label>
-        <ion-icon name="information-circle" size="small" slot="end"></ion-icon>
-      </ion-item>
-      
-      <ion-item>
-        <ion-icon name="star" slot="start"></ion-icon>
-        <ion-label>
-          Icon Start
-        </ion-label>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label>
-          Two Icons End
-        </ion-label>
-        <ion-icon name="checkmark-circle" slot="end"></ion-icon>
-        <ion-icon name="shuffle" slot="end"></ion-icon>
-      </ion-item>
-  <!--<div class="d-flex mt-2" style="height:39px">
-    <div style="position: relative" class="mt-2">
-      <input #fileInput type="file" multiple>
-      <button id="select-btn" type="button" (click)="fileInput.click()" class="btn btn-danger btn-sm mt-2 ml-1">
-        Selecionar imagens...
-      </button>
-    </div>
-  </div>-->
+<ion-content style="background:#F1F1F1">
+  <ion-card *ngFor="let item of houseList;">
+    <ion-card-header style="padding:0 18px">
+      <ion-card-title class="title">
+        <p>Residencial - 3 Dormitórios, Sala, Cozinha, Banheiro</p>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content style="padding:0">    
+      <img [src]="item.imageUrl[0]"/>
+    </ion-card-content>
+  
+    <ion-card-content style="color:white">
+      R$ {{item.price}},00
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

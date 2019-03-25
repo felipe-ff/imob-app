@@ -14,7 +14,7 @@ import { environment } from '../environments/environment';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule} from '@angular/http';
 
-import { CdrService } from './service/cdr.service';
+import { PropertyService } from './service/property.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +24,7 @@ import { CdrService } from './service/cdr.service';
   providers: [
     StatusBar,
     SplashScreen,
-    CdrService,
+    PropertyService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

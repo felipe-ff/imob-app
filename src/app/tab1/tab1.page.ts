@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CdrService } from '../service/cdr.service';
+import { PropertyService } from '../service/property.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,8 +11,10 @@ export class Tab1Page {
 
   houseList: any[];
 
-  constructor(private cdrService: CdrService, private http: HttpClient) {
-    this.cdrService.getBooks(null).subscribe( data => {
+  constructor(private propertyService: PropertyService, private http: HttpClient) {
+    const filters: any = {};
+    filters.purpose = {name: 'aluguel', code: 'rent'};
+    this.propertyService.getBooks(filters).subscribe( data => {
       this.houseList = data.items;
       console.log(data);
      // this.loading = false;

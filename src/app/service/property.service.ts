@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-//import { Cdr } from '../model/cdr.model';
 import { isDevMode } from '@angular/core';
 
 @Injectable()
-export class CdrService {
+export class PropertyService {
 
   constructor(private http: HttpClient) {
     this.setLocation();
@@ -23,7 +22,8 @@ export class CdrService {
   }
 
   getBooks(filters) {
-    return this.http.get<any>(this.baseUrlApi + '/filters/' + filters) ;
+    console.log(filters);
+    return this.http.get<any>(this.baseUrlApi + '/filters/' + JSON.stringify(filters));
   }
 
   login(user) {
