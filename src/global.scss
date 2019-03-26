@@ -26,3 +26,20 @@ ion-card-title {
     color: white;
     font-size: 1.2em;
 }
+
+.update {
+    display: flex;
+    /*justify-content: center;*/
+    background-color: #6492CE;
+}
+
+.update ion-label {
+    color: white;
+    width: 95%;
+    margin-left: 14px;
+    text-align: center;
+}
+
+.update ion-icon {
+    justify-self: flex-end;
+}

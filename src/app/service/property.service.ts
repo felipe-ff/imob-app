@@ -22,7 +22,6 @@ export class PropertyService {
   }
 
   getBooks(filters) {
-    console.log(filters);
     return this.http.get<any>(this.baseUrlApi + '/filters/' + JSON.stringify(filters));
   }
 

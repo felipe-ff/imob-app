@@ -15,6 +15,17 @@
       <ion-icon name="send"></ion-icon>
       <ion-label>Contato</ion-label>
     </ion-tab-button>
+
   </ion-tab-bar>
+  
+ 
+  <ion-chip class="update" *ngIf="updateAvaiable">
+    <ion-label (click)="click1()">Aplicar atualização</ion-label>
+    <ion-icon color="light" name="close-circle" (click)="click2()"></ion-icon>
+  </ion-chip>
+
+  <ion-button (click)="click1()">
+    Force update
+  </ion-button>
 
 </ion-tabs>

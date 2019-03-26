@@ -15,7 +15,6 @@ export class Tab2Page {
     filters.purpose = {name: 'venda', code: 'sell'};
     this.propertyService.getBooks(filters).subscribe( data => {
       this.houseList = data.items;
-      console.log(data);
      // this.loading = false;
     });
   }
