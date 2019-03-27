@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title style="text-align:center">
+        Venda
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-card *ngFor="let item of houseList;">
+      <ion-card-header style="padding:0 18px">
+        <ion-card-title class="title">
+          <p>Residencial - {{item.dorm}} Dormitórios, Sala, Cozinha, Banheiro</p>
+        </ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content style="padding:0">    
+        <img [src]="item.imageUrl[0]"/>
+      </ion-card-content>
+    
+      <ion-card-content style="color:white">
+        R$ {{item.price}},00
+      </ion-card-content>
+    </ion-card>
+  
+  </ion-content>
+  

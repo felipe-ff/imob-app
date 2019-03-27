@@ -14,8 +14,8 @@ export class Tab1Page extends ListingComponent {
 
   constructor(propertyService: PropertyService, http: HttpClient, updates: SwUpdate,
     alertController: AlertController) {
-    super(propertyService, http, updates, alertController);
+    super(propertyService, updates, alertController);
 
-    this.doSearch(null);
+    this.init('rent');
   }
 }

@@ -15,9 +15,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpModule} from '@angular/http';
 
 import { PropertyService } from './service/property.service';
+import { ListingComponent } from './listing/listing.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ListingComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, HttpModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { PropertyService } from '../service/property.service';
-import { HttpClient } from '@angular/common/http';
 import { SwUpdate } from '@angular/service-worker';
 
 @Component({
@@ -12,15 +11,22 @@ import { SwUpdate } from '@angular/service-worker';
 export class ListingComponent implements OnInit {
 
   houseList: any[];
-  
-  constructor(public propertyService: PropertyService, http: HttpClient, updates: SwUpdate,
-    alertController: AlertController) { }
+  tabType;
+  constructor(public propertyService: PropertyService, updates: SwUpdate,
+    alertController: AlertController) {
+
+  }
 
   ngOnInit() {}
 
+  init(tab) {
+    this.tabType = tab;
+    this.doSearch(null);
+  }
+  
   doSearch(stopLoading) {
     const filters: any = {};
-    filters.purpose = {name: 'aluguel', code: 'rent'};
+    filters.purpose = {name: 'aluguel', code: this.tabType};
     this.propertyService.getBooks(filters).subscribe( data => {
       this.houseList = data.items;
       if (stopLoading) {
