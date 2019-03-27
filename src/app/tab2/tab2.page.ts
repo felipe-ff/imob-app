@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { PropertyService } from '../service/property.service';
 import { HttpClient } from '@angular/common/http';
 import { Tab1Page } from '../tab1/tab1.page';
-import { ListingPage } from '../listing/listing.page';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +10,6 @@ import { ListingPage } from '../listing/listing.page';
 })
 export class Tab2Page {
   //houseList: any[];
-  @ViewChild('listing') listing: ListingPage;
 
   constructor() {
 
