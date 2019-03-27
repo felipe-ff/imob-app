@@ -1,24 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, Input, OnInit } from '@angular/core';
 import { PropertyService } from '../service/property.service';
 import { SwUpdate } from '@angular/service-worker';
+import { AlertController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-listing',
-  templateUrl: './listing.page.html',
-  styleUrls: ['./listing.page.scss'],
+  selector: 'app-listing2',
+  templateUrl: './listing2.component.html',
+  styleUrls: ['./listing2.component.scss']
 })
-export class ListingPage implements OnInit {
-
+export class Listing2Component implements OnInit {
   houseList: any[];
-
-  constructor(public propertyService: PropertyService, updates: SwUpdate,
-    alertController: AlertController) {
-
-    this.doSearch(null);
+  ngOnInit() {
+   // this.doSearch(null);
   }
 
-  ngOnInit() {
+  constructor(public propertyService: PropertyService, public http: HttpClient, updates: SwUpdate, alertController: AlertController) {
+    this.doSearch(null);
   }
 
   doSearch(stopLoading) {
@@ -36,4 +34,5 @@ export class ListingPage implements OnInit {
     console.log('Begin async operation');
     this.doSearch(() =>  event.target.complete());
   }
+
 }
