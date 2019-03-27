@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { PropertyService } from '../service/property.service';
 import { HttpClient } from '@angular/common/http';
+import { Tab1Page } from '../tab1/tab1.page';
+import { ListingPage } from '../listing/listing.page';
 
 @Component({
   selector: 'app-tab2',
@@ -8,15 +10,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  houseList: any[];
+  //houseList: any[];
+  @ViewChild('listing') listing: ListingPage;
 
-  constructor(private propertyService: PropertyService, private http: HttpClient) {
-    const filters: any = {};
-    filters.purpose = {name: 'venda', code: 'sell'};
-    this.propertyService.getBooks(filters).subscribe( data => {
-      this.houseList = data.items;
-     // this.loading = false;
-    });
+  constructor() {
+
   }
 
 }

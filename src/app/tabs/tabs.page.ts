@@ -10,7 +10,7 @@ export class TabsPage {
   updateAvaiable = false;
 
   constructor(public updates: SwUpdate) {
-    setTimeout(() => this.promptUpdate, 500);
+    setTimeout(() => this.promptUpdate, 1500);
   }
 
   promptUpdate() {
@@ -31,6 +31,15 @@ export class TabsPage {
 
   click2() {
     console.log('click2');
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
   }
 
 }

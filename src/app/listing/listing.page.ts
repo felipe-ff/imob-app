@@ -1,19 +1,17 @@
 import { Component } from '@angular/core';
 import { PropertyService } from '../service/property.service';
-import { HttpClient } from '@angular/common/http';
 import { SwUpdate } from '@angular/service-worker';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-listing',
+  templateUrl: './listing.page.html',
+  styleUrls: ['./listing.page.scss'],
 })
-export class Tab1Page {
-
+export class ListingPage {
   houseList: any[];
 
-  constructor(private propertyService: PropertyService, private http: HttpClient, public updates: SwUpdate,
+  constructor(private propertyService: PropertyService, public updates: SwUpdate,
     public alertController: AlertController) {
 
     this.doSearch(null);
@@ -45,4 +43,5 @@ export class Tab1Page {
     console.log('Begin async operation');
     this.doSearch(() =>  event.target.complete());
   }
+
 }
