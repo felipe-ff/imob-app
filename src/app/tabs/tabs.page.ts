@@ -10,11 +10,11 @@ export class TabsPage {
   updateAvaiable = false;
 
   constructor(public updates: SwUpdate) {
-    setTimeout(() => this.promptUpdate, 1500);
+    this.promptUpdate();
   }
 
   promptUpdate() {
-    this.updates.available.subscribe(event => {
+     this.updates.available.subscribe(event => {
       console.log('current version is', event.current);
       console.log('available version is', event.available);
       this.updateAvaiable = true;
