@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -9,7 +10,7 @@ import { SwUpdate } from '@angular/service-worker';
 export class TabsPage {
   updateAvaiable = false;
 
-  constructor(public updates: SwUpdate) {
+  constructor(public updates: SwUpdate, public loadingController: LoadingController) {
     this.promptUpdate();
   }
 
@@ -25,21 +26,14 @@ export class TabsPage {
     });
   }
 
-  click1() {
+  async click1() {
     this.updates.activateUpdate().then(() => document.location.reload());
+    const loading = await this.loadingController.create();
+    await loading.present();
   }
 
   click2() {
     console.log('click2');
-  }
-
-  doRefresh(event) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
   }
 
 }

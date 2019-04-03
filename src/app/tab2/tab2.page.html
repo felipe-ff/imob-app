@@ -10,6 +10,7 @@
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
+
     <ion-card *ngFor="let item of houseList;">
       <ion-card-header style="padding:0 18px">
         <ion-card-title class="title">
@@ -25,6 +26,13 @@
         R$ {{item.price}},00
       </ion-card-content>
     </ion-card>
+
+    <ion-infinite-scroll *ngIf="(first) || ((offset + 2) > max.length)" threshold="90px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   
   </ion-content>
   

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { PropertyService } from '../service/property.service';
 import { SwUpdate } from '@angular/service-worker';
 
@@ -10,25 +10,54 @@ import { SwUpdate } from '@angular/service-worker';
 })
 export class ListingComponent implements OnInit {
 
-  houseList: any[];
+  houseList: any[] = [];
   tabType;
+  loading;
+  max;
+  first = true;
+  offset = 0;
   constructor(public propertyService: PropertyService, updates: SwUpdate,
-    alertController: AlertController) {
-
+    alertController: AlertController, public loadingController: LoadingController) {
   }
 
   ngOnInit() {}
 
-  init(tab) {
+  async init(tab) {
+    this.loading = await this.loadingController.create();
+    await this.loading.present();
     this.tabType = tab;
-    this.doSearch(null);
+    await this.count();
+    await this.doSearch(null);
   }
-  
+
+  loadData(event) {
+    console.log('Done');
+    console.log(this.max);
+    if ( (this.offset + 2) > this.max) {
+      this.doSearch(() => event.target.complete());
+      this.first = false;
+    }
+  }
+
+  count() {
+    const filters: any = {};
+    filters.purpose = {name: 'aluguel', code: this.tabType};
+    this.propertyService.getBooksCount(filters).subscribe( data => {
+      this.max = data.items.length;
+    });
+  }
+
   doSearch(stopLoading) {
     const filters: any = {};
     filters.purpose = {name: 'aluguel', code: this.tabType};
-    this.propertyService.getBooks(filters).subscribe( data => {
-      this.houseList = data.items;
+    this.propertyService.getBooks(filters, this.offset).subscribe( data => {
+      this.houseList = this.houseList.concat(data.items);
+      console.log('dismiss');
+      this.offset += 2;
+      if (this.loading) {
+        console.log('dismisss');
+        this.loading.dismiss();
+      }
       if (stopLoading) {
         stopLoading();
       }
@@ -36,7 +65,11 @@ export class ListingComponent implements OnInit {
   }
 
   doRefresh(event) {
+    this.houseList = [];
+    this.offset = 0;
+    this.first = true;
+    this.count();
     console.log('Begin async operation');
-    this.doSearch(() =>  event.target.complete());
+    this.doSearch(() => event.target.complete());
   }
 }

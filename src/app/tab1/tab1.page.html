@@ -23,7 +23,14 @@
   
     <ion-card-content style="color:white">
       R$ {{item.price}},00
-    </ion-card-content>
+    </ion-card-content>    
   </ion-card>
+
+  <ion-infinite-scroll *ngIf="(first) || ((offset + 2) > max.length)" threshold="90px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { PropertyService } from '../service/property.service';
 import { HttpClient } from '@angular/common/http';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { SwUpdate } from '@angular/service-worker';
 import { ListingComponent } from '../listing/listing.component';
 
@@ -12,8 +12,8 @@ import { ListingComponent } from '../listing/listing.component';
 })
 export class Tab2Page extends ListingComponent {
   constructor(propertyService: PropertyService, http: HttpClient, updates: SwUpdate,
-    alertController: AlertController) {
-    super(propertyService, updates, alertController);
+    alertController: AlertController, public loadingController: LoadingController) {
+    super(propertyService, updates, alertController, loadingController);
 
     this.init('sell');
   }
