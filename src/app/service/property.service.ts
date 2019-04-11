@@ -21,8 +21,8 @@ export class PropertyService {
     this.baseUrl = url + port;
   }
 
-  getBooks(filters, offset) {
-    return this.http.get<any>(this.baseUrlApi + '/filters/' + JSON.stringify(filters) + '/limit/' + 2 + '/offset/' + offset);
+  getBooks(filters, limit, offset) {
+    return this.http.get<any>(this.baseUrlApi + '/filters/' + JSON.stringify(filters) + '/limit/' + limit + '/offset/' + offset);
   }
 
   getBooksCount(filters) {

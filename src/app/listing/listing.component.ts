@@ -16,6 +16,7 @@ export class ListingComponent implements OnInit {
   max;
   first = true;
   offset = 0;
+  limit = 6;
   constructor(public propertyService: PropertyService, updates: SwUpdate,
     alertController: AlertController, public loadingController: LoadingController) {
   }
@@ -33,7 +34,7 @@ export class ListingComponent implements OnInit {
   loadData(event) {
     console.log('Done');
     console.log(this.max);
-    if ( (this.offset + 2) > this.max) {
+    if ( (this.offset + this.limit) > this.max) {
       this.doSearch(() => event.target.complete());
       this.first = false;
     }
@@ -50,10 +51,10 @@ export class ListingComponent implements OnInit {
   doSearch(stopLoading) {
     const filters: any = {};
     filters.purpose = {name: 'aluguel', code: this.tabType};
-    this.propertyService.getBooks(filters, this.offset).subscribe( data => {
+    this.propertyService.getBooks(filters, this.limit, this.offset).subscribe( data => {
       this.houseList = this.houseList.concat(data.items);
       console.log('dismiss');
-      this.offset += 2;
+      this.offset += this.limit;
       if (this.loading) {
         console.log('dismisss');
         this.loading.dismiss();
